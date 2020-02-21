@@ -7,12 +7,8 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
+import Auth from '../socket/event/Auth';
 
-export default interface Route {
-    title: string;
-    description: string;
-    event: string;
-    payload?: object;
-
-// eslint-disable-next-line
-}
+export default {
+    auth: (new Auth())
+};

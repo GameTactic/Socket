@@ -8,13 +8,12 @@
  *
  */
 
-import {Get, JsonController} from 'routing-controllers';
-import * as sockets from '../core/SocketRouter';
+import SocketRoute from './SocketRoute';
+import Routes from '../config/Routes';
 
-@JsonController()
-export class DocsController {
-    @Get('/doc')
-    public indexAction(): object {
-        return sockets.default;
-    }
-}
+const routes: Array<SocketRoute> = Routes;
+const classes: { [key: string]: SocketRoute } = {};
+routes.forEach((route: SocketRoute) => {
+    classes[route.event] = route;
+});
+export default classes;

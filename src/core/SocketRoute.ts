@@ -8,13 +8,11 @@
  *
  */
 
-import {Get, JsonController} from 'routing-controllers';
-import * as sockets from '../core/SocketRouter';
+export default interface SocketRoute {
+    title: string;
+    description: string;
+    event: string;
+    payload?: object;
 
-@JsonController()
-export class DocsController {
-    @Get('/doc')
-    public indexAction(): object {
-        return sockets.default;
-    }
+// eslint-disable-next-line
 }

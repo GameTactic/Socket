@@ -7,11 +7,8 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
-import Route from './Route';
 
-export default class Auth implements Route {
-    title = 'Authentication';
-    description = 'Authenticate user with JWT to the socket server.';
-    event = 'auth';
-    payload: { jwt: string } = { jwt: 'JWT from authentication microservice' };
+import { Server } from 'socket.io';
+export default abstract class Subscription {
+    public abstract on(io: Server): string|void;
 }

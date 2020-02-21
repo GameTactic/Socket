@@ -7,14 +7,12 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
+import Subscription from '../../core/Subscription';
+import {OnEvent} from '../../core/Decorators';
 
-import {Get, JsonController} from 'routing-controllers';
-import * as sockets from '../core/SocketRouter';
-
-@JsonController()
-export class DocsController {
-    @Get('/doc')
-    public indexAction(): object {
-        return sockets.default;
+@OnEvent('connection')
+export default class Auth extends Subscription {
+    public on(): string | void {
+        return;
     }
 }

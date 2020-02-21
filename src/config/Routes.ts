@@ -7,12 +7,8 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
-import Auth from './Auth';
-import Route from './Route';
+import Auth from '../socket/route/Auth';
 
-const routes: Array<Route> = [ new Auth ];
-const classes: { [key: string]: Route } = {};
-routes.forEach((route: Route) => {
-    classes[route.event] = route;
-});
-export default classes;
+export default [
+    new Auth
+];

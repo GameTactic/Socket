@@ -14,6 +14,8 @@ import socket from 'socket.io';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
 import controllers from './controllers';
+import { Socket } from 'socket.io';
+import { SubscriptionManager } from './core/SubscriptionManager';
 
 // Express configuration
 const app = createExpressServer({controllers: controllers});
@@ -29,10 +31,8 @@ app.set('host', process.env.HOST || 'localhost');
 app.use(compression());
 
 // Sockets
-io.on('connection', function(socket){
-    socket.on('', function(msg){
-        console.log('message: ' + msg);
-    });
+io.on('connection', function(socket: Socket) {
+    new SubscriptionManager(socket, io);
 });
 
 console.log('App is running at http://%s:%d in %s mode', app.get('host'), app.get('port'), app.get('env'));
