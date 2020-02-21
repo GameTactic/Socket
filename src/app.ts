@@ -4,7 +4,6 @@ import socket from 'socket.io';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
 import controllers from './controllers';
-import views from 'koa-views';
 
 // Express configuration
 const app = createExpressServer({controllers: controllers});
