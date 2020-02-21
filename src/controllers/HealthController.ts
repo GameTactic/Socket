@@ -1,9 +1,9 @@
-import {Controller, Get} from 'routing-controllers';
+import {Get, JsonController} from 'routing-controllers';
 
-@Controller()
+@JsonController()
 export class HealthController {
     @Get('/')
-    public health(): string {
-        return 'OK';
+    public healthAction(): object {
+        return { health: true };
     }
 }
