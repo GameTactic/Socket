@@ -1,24 +1,30 @@
-import express from "express";
-import compression from "compression";  // compresses requests
-import bodyParser from "body-parser";
-import lusca from "lusca";
-
-// Controllers (route handlers)
-import * as homeController from "./controllers/home";
-
-// Create Express server
+import compression from 'compression';  // compresses requests
+import http from 'http';
+import socket from 'socket.io';
+import 'reflect-metadata';
+import { createExpressServer } from 'routing-controllers';
+import controllers from './controllers';
 
 // Express configuration
-const app = express();
-app.set("port", process.env.PORT || 3000);
+const app = createExpressServer({controllers: controllers});
+const server = new http.Server(app);
+const io = socket(server);
+
+// Configure servers
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore This is some retarded reason... Typing is correct, but @types is wrong.
+server.listen(process.env.PORT || 3000, process.env.HOST || 'localhost');
+app.set('port', process.env.PORT || 3000);
+app.set('host', process.env.HOST || 'localhost');
 app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(lusca.xframe("SAMEORIGIN"));
-app.use(lusca.xssProtection(true));
 
-// Routing
-app.get("/", homeController.index);
+// Sockets
+io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
+});
 
-// We are done here.
-export default app;
+console.log('App is running at http://%s:%d in %s mode', app.get('host'), app.get('port'), app.get('env'));
+console.log('Press CTRL-C to stop\n');
