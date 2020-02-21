@@ -8,7 +8,7 @@
  *
  */
 
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 export default abstract class Subscription {
-    public abstract on(io: Server): string|void;
+    public abstract on(data: {io: Server; socket: Socket; from: string; msg: string;}): string|void;
 }

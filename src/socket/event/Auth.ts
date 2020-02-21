@@ -8,11 +8,14 @@
  *
  */
 import Subscription from '../../core/Subscription';
-import {OnEvent} from '../../core/Decorators';
+import { OnEvent } from '../../core/Decorators';
+import AuthDoc from '../route/AuthDoc';
+import logger from '../../util/logger';
 
-@OnEvent('connection')
+@OnEvent((new AuthDoc).event)
 export default class Auth extends Subscription {
     public on(): string | void {
+        logger.debug('Got new authentication request.');
         return;
     }
 }

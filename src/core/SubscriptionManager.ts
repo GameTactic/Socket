@@ -22,7 +22,7 @@ export class SubscriptionManager {
         // I will be checking first if there is any event to run on socket connect.
         if (_onEvent.connection !== undefined) {
             _onEvent.connection.forEach((item: { new (): Subscription }) => {
-                (new item).on(io);
+                (new item).on({io: io, socket: socket, from: '', msg: ''});
             });
         }
 
@@ -30,9 +30,11 @@ export class SubscriptionManager {
         const events: Array<string> = Object.keys(_onEvent);
         events.forEach((event: string) => {
             // Here going to skip `connection` event as we dont want run it twice.
-            if (event === 'connection') {
+            if (event !== 'connection') {
                 _onEvent[event].forEach((item: { new (): Subscription }) => {
-                    (new item()).on(io);
+                    socket.on(event, (from: string, msg: string) => {
+                        (new item()).on({io: io, socket: socket, from: from, msg: msg});
+                    });
                 });
             }
         });

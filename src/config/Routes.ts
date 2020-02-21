@@ -7,8 +7,8 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
-import Auth from '../socket/route/Auth';
+import AuthDoc from '../socket/route/AuthDoc';
 
 export default [
-    new Auth
+    new AuthDoc
 ];

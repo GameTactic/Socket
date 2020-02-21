@@ -9,7 +9,7 @@
  */
 import SocketRoute from '../../core/SocketRoute';
 
-export default class Auth implements SocketRoute {
+export default class AuthDoc implements SocketRoute {
     title = 'Authentication';
     description = 'Authenticate user with JWT to the socket server.';
     event = 'auth';
