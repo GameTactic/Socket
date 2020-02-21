@@ -1,3 +1,13 @@
+/**
+ *
+ * GameTactic Socket 2020 — NOTICE OF LICENSE
+ * This source file is released under GPLv3 license by copyright holders.
+ * Please see LICENSE file for more specific licensing terms.
+ * @copyright 2019-2020 (c) GameTactic
+ * @author Niko Granö <niko@granö.fi>
+ *
+ */
+
 import compression from 'compression';
 import http from 'http';
 import socket from 'socket.io';
@@ -19,10 +29,9 @@ app.set('host', process.env.HOST || 'localhost');
 app.use(compression());
 
 // Sockets
-io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-        console.log(data);
+io.on('connection', function(socket){
+    socket.on('', function(msg){
+        console.log('message: ' + msg);
     });
 });
 

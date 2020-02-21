@@ -8,12 +8,11 @@
  *
  */
 
-import {Get, JsonController} from 'routing-controllers';
+export default interface Route {
+    title: string;
+    description: string;
+    event: string;
+    payload?: object;
 
-@JsonController()
-export class HealthController {
-    @Get('/')
-    public healthAction(): object {
-        return { health: true };
-    }
+// eslint-disable-next-line
 }

@@ -7,13 +7,12 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
+import Auth from './Auth';
+import Route from './Route';
 
-import {Get, JsonController} from 'routing-controllers';
-
-@JsonController()
-export class HealthController {
-    @Get('/')
-    public healthAction(): object {
-        return { health: true };
-    }
-}
+const routes: Array<Route> = [ new Auth ];
+const classes: { [key: string]: Route } = {};
+routes.forEach((route: Route) => {
+    classes[route.event] = route;
+});
+export default classes;

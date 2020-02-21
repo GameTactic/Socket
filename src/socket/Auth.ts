@@ -7,13 +7,11 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
+import Route from './Route';
 
-import {Get, JsonController} from 'routing-controllers';
-
-@JsonController()
-export class HealthController {
-    @Get('/')
-    public healthAction(): object {
-        return { health: true };
-    }
+export default class Auth implements Route {
+    title = 'Authentication';
+    description = 'Authenticate user with JWT to the socket server.';
+    event = 'auth';
+    payload: { jwt: string } = { jwt: 'JWT from authentication microservice' };
 }

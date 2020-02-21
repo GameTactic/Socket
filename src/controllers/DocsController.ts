@@ -9,11 +9,12 @@
  */
 
 import {Get, JsonController} from 'routing-controllers';
+import * as sockets from '../socket';
 
 @JsonController()
-export class HealthController {
-    @Get('/')
-    public healthAction(): object {
-        return { health: true };
+export class DocsController {
+    @Get('/doc')
+    public indexAction(): object {
+        return sockets.default;
     }
 }
