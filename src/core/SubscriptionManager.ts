@@ -19,7 +19,7 @@ export default class SubscriptionManager {
         // I will be checking first if there is any event to run on socket connect.
         if (_onEvent.connection !== undefined) {
             _onEvent.connection.forEach((item: { new (): Subscription }) => {
-                (new item).on({io: io, socket: socket, data: {}});
+                (new item).on({io: io, socket: socket, data: []});
             });
         }
 
