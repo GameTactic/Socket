@@ -21,7 +21,7 @@ export default class NewConnection implements Subscription {
     }
 
     public on(data: SubscriptionData): string | void {
-        this.log.debug('New connection from '+data.socket.id);
+        this.log.debug('New connection from '+data.socket.client.id);
         return;
     }
 }

@@ -21,7 +21,7 @@ export default class Disconnection implements Subscription {
     }
 
     public on(data: SubscriptionData): string | void {
-        this.log.debug('Client '+data.socket.id+' has disconnected.');
+        this.log.debug('Client '+data.socket.client.id+' has disconnected.');
         return;
     }
 }
