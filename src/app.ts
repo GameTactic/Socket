@@ -33,7 +33,6 @@ app.set('host', process.env.HOST || 'localhost');
 app.use(compression());
 
 // Sockets
-import './config/Subscribers';
 io.on('connection', function(socket: Socket) {
     new SubscriptionManager(socket, io);
 });
