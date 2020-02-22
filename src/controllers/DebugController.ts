@@ -9,8 +9,10 @@
  */
 
 import {Controller, Get, Render} from 'routing-controllers';
+import {RegisteredController} from '../core/Decorators';
 
 @Controller()
+@RegisteredController('debug')
 export class DebugController {
     @Get('/')
     @Render('index.twig')

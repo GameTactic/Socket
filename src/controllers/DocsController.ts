@@ -9,12 +9,21 @@
  */
 
 import {Get, JsonController} from 'routing-controllers';
-import * as sockets from '../core/SocketRouter';
+import {_autoSocketDocRoute, RegisteredController} from '../core/Decorators';
+import SocketDoc from '../core/SocketDoc';
 
 @JsonController()
+@RegisteredController()
 export class DocsController {
     @Get('/doc')
     public indexAction(): object {
-        return sockets.default;
+        const docBlocks = _autoSocketDocRoute as Array<{ new (): SocketDoc }>;
+        const $return: { [key: string]: SocketDoc } = {};
+        for (let i=0; i < docBlocks.length; i++) {
+            const block: SocketDoc = new docBlocks[i]();
+            $return[block.event] = block;
+        }
+
+        return $return;
     }
 }

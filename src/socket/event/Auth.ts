@@ -10,12 +10,20 @@
 import Subscription from '../../core/Subscription';
 import { OnEvent } from '../../core/Decorators';
 import AuthDoc from '../route/AuthDoc';
-import logger from '../../util/logger';
+import { autoInjectable } from 'tsyringe';
+import Logger from '../../util/Logger';
 
 @OnEvent((new AuthDoc).event)
-export default class Auth extends Subscription {
+@autoInjectable()
+export default class Auth implements Subscription {
+    private readonly log: Logger;
+
+    constructor(private logger?: Logger) {
+        this.log = logger;
+    }
+
     public on(): string | void {
-        logger.debug('Got new authentication request.');
+        this.log.debug('Got new authentication request.');
         return;
     }
 }

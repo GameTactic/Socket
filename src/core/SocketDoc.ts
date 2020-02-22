@@ -7,8 +7,12 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
-import Auth from '../socket/event/Auth';
 
-export default {
-    auth: (new Auth())
-};
+export default interface SocketDoc {
+    title: string;
+    description: string;
+    event: string;
+    payload?: object;
+
+// eslint-disable-next-line
+}

@@ -15,6 +15,19 @@ export function OnEvent(event: string): (constructor: Function) => void {
             _onEvent[event] = [];
         }
         _onEvent[event].push(constructor);
-        constructor.prototype._onEvent = event;
+    };
+}
+
+export const _autoRoute: Array<{controller: Function; option: string}> = [];
+export function RegisteredController(onlyInEnvironment: string = ''): (constructor: Function) => void {
+    return function (constructor: Function) {
+        _autoRoute.push({controller: constructor, option: onlyInEnvironment});
+    };
+}
+
+export const _autoSocketDocRoute: Array<Function> = [];
+export function SocketDocBlock(): (constructor: Function) => void {
+    return function (constructor: Function) {
+        _autoSocketDocRoute.push(constructor);
     };
 }

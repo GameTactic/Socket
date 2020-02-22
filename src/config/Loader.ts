@@ -8,12 +8,9 @@
  *
  */
 
-import { HealthController } from './HealthController';
-import { DebugController } from './DebugController';
-import { IS_PRODUCTION } from '../util/secrets';
-import { DocsController } from './DocsController';
-
+// Please return here paths, which should be autoload.
 export default [
-    IS_PRODUCTION ? HealthController : DebugController,
-    DocsController,
+    __dirname + '/../controllers',  // Controllers for Http
+    __dirname + '/../socket/event', // Event Subscribers for Socket.IO
+    __dirname + '/../socket/route', // Documentation for Socket.IO
 ];

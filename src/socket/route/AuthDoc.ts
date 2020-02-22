@@ -7,9 +7,11 @@
  * @author Niko Granö <niko@granö.fi>
  *
  */
-import SocketRoute from '../../core/SocketRoute';
+import SocketDoc from '../../core/SocketDoc';
+import { SocketDocBlock } from '../../core/Decorators';
 
-export default class AuthDoc implements SocketRoute {
+@SocketDocBlock()
+export default class AuthDoc implements SocketDoc {
     title = 'Authentication';
     description = 'Authenticate user with JWT to the socket server.';
     event = 'auth';

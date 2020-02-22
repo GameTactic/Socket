@@ -2596,7 +2596,7 @@ ts-node@^8.4.1:
     source-map-support "^0.5.6"
     yn "3.1.1"
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.0.tgz#f1f3528301621a53220d58373ae510ff747a66bc"
   integrity sha512-BmndXUtiTn/VDDrJzQE7Mm22Ix3PxgLltW9bSNLoeCY31gnG2OPx0QqJnuc9oMIKioYrz487i6K9o4Pdn0j+Kg==
@@ -2607,6 +2607,13 @@ tsutils@^3.17.1:
   integrity sha512-kzeQ5B8H3w60nFY2g8cJIuH7JDpsALXySGtwGJ0p2LSjLgay3NdIpqq5SoOBe46bKDW2iq25irHCr8wjomUS2g==
   dependencies:
     tslib "^1.8.1"
+
+tsyringe@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/tsyringe/-/tsyringe-4.1.0.tgz#9a0c34b332dee2173b968fb739d24c4e174d3086"
+  integrity sha512-a0YXEiUNkv/Q1cvniiKd/Qv7TNa7xaFaTTekdloUmZD//aFXQ4PsGfq/cuicMLtHrOQE2QHbCAqdPfQ9wyqN0w==
+  dependencies:
+    tslib "^1.9.3"
 
 twig@^1.15.0:
   version "1.15.0"

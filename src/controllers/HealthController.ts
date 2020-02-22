@@ -9,8 +9,10 @@
  */
 
 import {Get, JsonController} from 'routing-controllers';
+import {RegisteredController} from '../core/Decorators';
 
 @JsonController()
+@RegisteredController('production')
 export class HealthController {
     @Get('/')
     public healthAction(): object {

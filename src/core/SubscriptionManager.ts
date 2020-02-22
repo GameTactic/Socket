@@ -10,14 +10,11 @@
 import { Socket } from 'socket.io';
 import {_onEvent} from './Decorators';
 import { Server } from 'socket.io';
-import Subscribers from '../config/Subscribers';
 import Subscription from './Subscription';
 
-export class SubscriptionManager {
+export default class SubscriptionManager {
     private readonly socket: Socket;
     constructor(socket: Socket, io: Server) {
-        // eslint-disable-next-line
-        const subs: object = Subscribers; // This is used to load subscribers into the memory.
         this.socket = socket;
         // I will be checking first if there is any event to run on socket connect.
         if (_onEvent.connection !== undefined) {

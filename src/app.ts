@@ -8,17 +8,19 @@
  *
  */
 
+console.log('Booting GameTactic Socket server, please wait...');
 import compression from 'compression';
 import http from 'http';
 import socket from 'socket.io';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
-import controllers from './controllers';
 import { Socket } from 'socket.io';
-import { SubscriptionManager } from './core/SubscriptionManager';
+import './core/Bootstrap';
+import SubscriptionManager from './core/SubscriptionManager';
+import AutoRouter from './core/AutoRouter';
 
 // Express configuration
-const app = createExpressServer({controllers: controllers});
+const app = createExpressServer({controllers: (new AutoRouter()).getControllers()});
 const server = new http.Server(app);
 const io = socket(server);
 
@@ -31,9 +33,10 @@ app.set('host', process.env.HOST || 'localhost');
 app.use(compression());
 
 // Sockets
+import './config/Subscribers';
 io.on('connection', function(socket: Socket) {
     new SubscriptionManager(socket, io);
 });
 
-console.log('App is running at http://%s:%d in %s mode', app.get('host'), app.get('port'), app.get('env'));
+console.log('Server is running at http://%s:%d in %s mode', app.get('host'), app.get('port'), app.get('env'));
 console.log('Press CTRL-C to stop\n');
