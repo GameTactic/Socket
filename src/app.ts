@@ -8,7 +8,6 @@
  *
  */
 
-console.log('Booting GameTactic Socket server, please wait...');
 import compression from 'compression';
 import http from 'http';
 import socket from 'socket.io';

@@ -19,18 +19,20 @@ export default class SubscriptionManager {
         // I will be checking first if there is any event to run on socket connect.
         if (_onEvent.connection !== undefined) {
             _onEvent.connection.forEach((item: { new (): Subscription }) => {
-                (new item).on({io: io, socket: socket, from: '', msg: ''});
+                (new item).on({io: io, socket: socket, data: {}});
             });
         }
 
         // Now I will check what events I have to run.
         const events: Array<string> = Object.keys(_onEvent);
+
         events.forEach((event: string) => {
             // Here going to skip `connection` event as we dont want run it twice.
             if (event !== 'connection') {
                 _onEvent[event].forEach((item: { new (): Subscription }) => {
-                    socket.on(event, (from: string, msg: string) => {
-                        (new item()).on({io: io, socket: socket, from: from, msg: msg});
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    socket.on(event, (...args: Array<any>) => {
+                        (new item()).on({io: io, socket: socket, data: args});
                     });
                 });
             }

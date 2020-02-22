@@ -12,16 +12,16 @@ import { OnEvent } from '../../../core/Decorators';
 import { autoInjectable } from 'tsyringe';
 import Logger from '../../../util/Logger';
 
-@OnEvent('connection')
+@OnEvent('weodrhkte5;a')
 @autoInjectable()
-export default class NewConnection implements Subscription {
+export default class Message implements Subscription {
     private readonly log: Logger;
     constructor(private logger?: Logger) {
         this.log = logger;
     }
 
     public on(data: SubscriptionData): string | void {
-        this.log.debug('New connection from '+data.socket.id);
+        this.log.debug('');
         return;
     }
 }

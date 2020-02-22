@@ -13,8 +13,8 @@ import { Server, Socket } from 'socket.io';
 export interface SubscriptionData {
     io: Server;
     socket: Socket;
-    from: string;
-    msg: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: Array<any>;
 }
 
 export default interface Subscription {

@@ -21,18 +21,18 @@
         <input id="m" autocomplete="off" /><button>Send</button>
     </form>
 </body>
-<script src="/socket.io/socket.io.js"></script>
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     $(function () {
-        var socket = io();
+        const socket = io();
         $('form').submit(function(e){
             e.preventDefault(); // prevents page reloading
-            socket.emit('chat msg', $('#m').val());
+            socket.emit('message', $('#m').val(), 'fucker', {test: '12345'});
             $('#m').val('');
             return false;
         });
-        socket.on('msg', function(msg){
+        socket.on('message', function(msg){
             $('#messages').append($('<li>').text(msg));
         });
     });
