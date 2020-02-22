@@ -12,5 +12,6 @@
 export default [
     __dirname + '/../controllers',  // Controllers for Http
     __dirname + '/../socket/event', // Event Subscribers for Socket.IO
+    __dirname + '/../socket/event/log', // Event Subscribers for Socket.IO
     __dirname + '/../socket/route', // Documentation for Socket.IO
 ];

@@ -29,6 +29,10 @@ export default class Logger {
         this.logger = winston.createLogger({transports: transport});
     }
 
+    public winston(): winston.Logger {
+        return this.logger;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public debug(message: string, meta?: any, callback?: LogCallback): void {
         this.logger.debug(message, meta, callback);
@@ -47,16 +51,6 @@ export default class Logger {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public warning(message: string, meta?: any, callback?: LogCallback): void {
         this.logger.warning(message, meta, callback);
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public critical(message: string, meta?: any, callback?: LogCallback): void {
-        this.logger.crit(message, meta, callback);
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public emergency(message: string, meta?: any, callback?: LogCallback): void {
-        this.logger.emerg(message, meta, callback);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

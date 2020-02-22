@@ -9,7 +9,15 @@
  */
 
 import { Server, Socket } from 'socket.io';
+
+export interface SubscriptionData {
+    io: Server;
+    socket: Socket;
+    from: string;
+    msg: string;
+}
+
 export default interface Subscription {
-    on(data: {io: Server; socket: Socket; from: string; msg: string}): string|void;
+    on(data: SubscriptionData): string|void;
     // eslint-disable-next-line
 }

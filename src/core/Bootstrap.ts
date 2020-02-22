@@ -15,7 +15,8 @@ import * as fs from 'fs';
 for (let i=0; i < Loader.length; i++) {
     const modulePath = Loader[i];
     const importPath: string = '../' + modulePath.split('../')[1]+'/';
-    let files: Array<string> = fs.readdirSync(path.resolve(modulePath));
+    const dirents: Array<fs.Dirent> = fs.readdirSync(path.resolve(modulePath), { withFileTypes: true});
+    let files: Array<string> = dirents.filter(dirent => !dirent.isDirectory()).map(dirent => dirent.name);
     for (let f=0; f < files.length; f++) {
         files[f] = files[f].split('.')[0];
     }

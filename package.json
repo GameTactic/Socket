@@ -19,9 +19,9 @@
         "build-ts": "tsc",
         "watch-ts": "tsc -w",
         "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
-        "debug": "yarn run build && yarn run watch-debug",
+        "debug": "echo > debug.log && yarn run build && yarn run watch-debug",
         "serve-debug": "nodemon --inspect dist/app.js",
-        "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn run watch-ts\" \"yarn run serve-debug\""
+        "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node,Debug\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn run watch-ts\" \"yarn run serve-debug\" \"tail -f debug.log\""
     },
     "dependencies": {
         "class-transformer": "^0.2.3",
