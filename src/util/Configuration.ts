@@ -8,16 +8,17 @@
  *
  */
 
-import dotenv from 'dotenv';
+import dotenv, {DotenvConfigOutput} from 'dotenv';
 import fs from 'fs';
+import request from 'sync-request';
 
 export default class Configuration {
+    private readonly jwt: string;
+    private readonly dotEnv: DotenvConfigOutput;
+
     constructor() {
-        if (fs.existsSync('.env')) {
-            dotenv.config({ path: '.env' });
-        } else {
-            dotenv.config({ path: '.env.example' });  // you can delete this after you create your own .env file!
-        }
+        this.dotEnv = dotenv.config(fs.existsSync('.env') ? { path:'.env'} : { path:'.env.example'});
+        this.jwt = JSON.parse(request('GET', this.dotEnv.parsed['AUTH_MICROSERVICE']).body.toString()).publicKey;
     }
 
     public environment(): string {
@@ -26,5 +27,9 @@ export default class Configuration {
 
     public isProduction(): boolean {
         return this.environment() === 'production';
+    }
+
+    public getJWTPublicKey(): string {
+        return this.jwt;
     }
 }

@@ -13,10 +13,10 @@ import http from 'http';
 import socket from 'socket.io';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
-import { Socket } from 'socket.io';
 import './core/Bootstrap';
 import SubscriptionManager from './core/SubscriptionManager';
 import AutoRouter from './core/AutoRouter';
+import JwtAuthentication from './socket/middleware/JwtAuthentication';
 
 // Express configuration
 const app = createExpressServer({controllers: (new AutoRouter()).getControllers()});
@@ -32,9 +32,8 @@ app.set('host', process.env.HOST || 'localhost');
 app.use(compression());
 
 // Sockets
-io.on('connection', function(socket: Socket) {
-    new SubscriptionManager(socket, io);
-});
+io.use((socket, next) => (new JwtAuthentication()).register(socket, next));
+io.on('connection', (socket) => new SubscriptionManager(socket, io));
 
 console.log('Server is running at http://%s:%d in %s mode', app.get('host'), app.get('port'), app.get('env'));
 console.log('Press CTRL-C to stop\n');
