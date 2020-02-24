@@ -2504,6 +2504,13 @@ socket.io-client@2.3.0:
     socket.io-parser "~3.3.0"
     to-array "0.1.4"
 
+socket.io-json-parser@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/socket.io-json-parser/-/socket.io-json-parser-2.1.0.tgz#4af11e37f75e6a45405e46e621e7b57fc1a0d88f"
+  integrity sha1-SvEeN/deakVAXkbmIee1f8Gg2I8=
+  dependencies:
+    component-emitter "1.2.1"
+
 socket.io-parser@~3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/socket.io-parser/-/socket.io-parser-3.3.0.tgz#2b52a96a509fdf31440ba40fed6094c7d4f1262f"

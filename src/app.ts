@@ -10,18 +10,20 @@
 
 import compression from 'compression';
 import http from 'http';
-import socket from 'socket.io';
+import socket, { ServerOptions } from 'socket.io';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
 import './core/Bootstrap';
 import SubscriptionManager from './core/SubscriptionManager';
 import AutoRouter from './core/AutoRouter';
 import JwtAuthentication from './socket/middleware/JwtAuthentication';
+import * as JsonParser from 'socket.io-json-parser';
 
 // Express configuration
 const app = createExpressServer({controllers: (new AutoRouter()).getControllers()});
 const server = new http.Server(app);
-const io = socket(server);
+const socketOptions = { parser: JsonParser } as ServerOptions;
+const io = socket(server, socketOptions);
 
 // Configure servers
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
